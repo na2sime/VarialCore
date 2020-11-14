@@ -1,0 +1,11 @@
+name: VarialCore
+main: club.varial.core.Main
+version: 1.0.0
+author: NA2SIME
+website: varial.club
+
+commands:
+  prefix:
+  boutique:
+  tournois:
+  sanction:
