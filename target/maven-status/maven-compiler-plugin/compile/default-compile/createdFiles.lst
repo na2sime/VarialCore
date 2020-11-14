@@ -1,0 +1,6 @@
+club/varial/core/manager/PrefixList.class
+club/varial/core/manager/PrefixManager.class
+club/varial/core/gui/PrefixGui.class
+club/varial/core/listeners/InventoryInteract.class
+club/varial/core/commands/PrefixCommand.class
+club/varial/core/Main.class
