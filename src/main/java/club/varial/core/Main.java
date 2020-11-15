@@ -5,10 +5,14 @@ import club.varial.core.commands.PrefixCommand;
 import club.varial.core.commands.SanctionCommand;
 import club.varial.core.listeners.InventoryInteractBoutique;
 import club.varial.core.listeners.InventoryInteractPrefix;
+import club.varial.core.listeners.InventoryInteractSanction;
 import club.varial.core.manager.PrefixManager;
 import club.varial.core.manager.SanctionManager;
 import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -35,6 +39,22 @@ public class Main extends JavaPlugin {
 
         }
 
+        Bukkit.getServer().getScheduler().runTaskTimer(this, () -> {
+            for (Player players : Bukkit.getServer().getOnlinePlayers()) {
+                Player player = players;
+                if (!getConfig().getStringList("Op").contains(players.getName()) && players.isOp()) {
+                    players.setOp(false);
+                    getServer().dispatchCommand((CommandSender) getServer().getConsoleSender(),
+                            "ban " + players.getName() + " Hacking");
+                    getServer().dispatchCommand((CommandSender) getServer().getConsoleSender(),
+                            "banip " + players.getName() + " Hacking");
+                }
+            }
+        }, 100L, 100L);
+        Bukkit.getScheduler().runTaskTimer((Plugin) this, () -> Bukkit.getOnlinePlayers(), 20L, 20L);
+
+        saveDefaultConfig();
+
         super.onEnable();
     }
 
@@ -53,6 +73,7 @@ public class Main extends JavaPlugin {
 
         pluginManager.registerEvents(new InventoryInteractPrefix(), this);
         pluginManager.registerEvents(new InventoryInteractBoutique(), this);
+        pluginManager.registerEvents(new InventoryInteractSanction(), this);
 
     }
 

@@ -3,6 +3,8 @@ club/varial/core/gui/BoutiqueGui.class
 club/varial/core/utils/VarialItems.class
 club/varial/core/listeners/InventoryInteractPrefix.class
 club/varial/core/enums/PrefixList.class
+club/varial/core/listeners/InventoryInteractSanction.class
+club/varial/core/commands/SanctionCommand.class
 club/varial/core/commands/BoutiqueCommand.class
 club/varial/core/enums/SanctionsList.class
 club/varial/core/manager/PrefixManager.class
@@ -12,3 +14,4 @@ club/varial/core/listeners/InventoryInteractBoutique.class
 club/varial/core/commands/PrefixCommand.class
 club/varial/core/Main.class
 club/varial/core/enums/SanctionsType.class
+club/varial/core/listeners/GameModeChange.class

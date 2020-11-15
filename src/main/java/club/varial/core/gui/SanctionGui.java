@@ -4,10 +4,10 @@ import club.varial.core.Main;
 import club.varial.core.enums.SanctionsList;
 import club.varial.core.enums.SanctionsType;
 import club.varial.core.manager.SanctionManager;
-import litebans.api.Database;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -15,19 +15,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SanctionGui {
 
-    public SanctionGui(Player staff, Player sanctionned) {
+    public SanctionGui(Player staff, OfflinePlayer sanctionned) {
 
         List<String> lastBan = new ArrayList<>();
         lastBan.add("§c  ");
 
+        /*
         String uuid = sanctionned.getUniqueId().toString();
         String query = "SELECT * FROM {bans} WHERE uuid=?";
         try (PreparedStatement st = Database.get().prepareStatement(query)) {
@@ -47,6 +45,8 @@ public class SanctionGui {
             e.printStackTrace();
         }
 
+         */
+
 
         Inventory inventory = Bukkit.createInventory(null, 54,
                 "§cSanction pour §f" + sanctionned.getName());
@@ -55,7 +55,7 @@ public class SanctionGui {
 
         ItemStack playerInfos = new ItemStack(Material.BOOK, 1);
         ItemMeta playerInfosMeta = playerInfos.getItemMeta();
-        playerInfosMeta.setDisplayName("§7Liste des bans de : §c" + sanctionned.getName());
+        playerInfosMeta.setDisplayName("§7Sanction de : §c" + sanctionned.getName());
         playerInfosMeta.setLore(lastBan);
         playerInfos.setItemMeta(playerInfosMeta);
 
@@ -83,9 +83,7 @@ public class SanctionGui {
             if (comp == null)
                 comp = new NBTTagCompound();
             comp.setString("reason", sanctionManager.sanctionsLists.get(i).getReason());
-            comp.setString("type", sanctionsType.getName());
-            comp.setString("litebanInfo", sanctionsType.getLitebanInfo());
-            comp.setString("banned_by", staff.getName());
+            comp.setString("sanctionned", sanctionned.getName().toString());
 
             itemData.setTag(comp);
             itemStack = CraftItemStack.asBukkitCopy(itemData);

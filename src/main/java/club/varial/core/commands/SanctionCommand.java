@@ -16,32 +16,34 @@ public class SanctionCommand implements CommandExecutor {
 
             Player player = (Player) sender;
 
-            if (player.hasPermission("varial.sanction")) {
+            if (command.getName().equalsIgnoreCase("sanction")) {
 
-                if (args.length == 0) {
-                    player.sendMessage("§cUtilisez: /sanction <player>");
-                } else if (args.length == 1) {
+                if (player.hasPermission("varial.sanction")) {
 
-                    OfflinePlayer sanctionned = Bukkit.getOfflinePlayer(args[0]);
+                    if (args.length == 0) {
+                        player.sendMessage("§cUtilisez: /sanction <player>");
+                    } else if (args.length == 1) {
 
-                    if (sanctionned != null) {
-                        new SanctionGui(player, (Player) sanctionned);
+                        OfflinePlayer sanctionned = Bukkit.getOfflinePlayer(args[0]);
+
+                        if (sanctionned != null) {
+                            new SanctionGui(player, sanctionned);
+                        } else {
+                            player.sendMessage("§cUtilisez: /sanction <player>");
+                        }
+
                     } else {
                         player.sendMessage("§cUtilisez: /sanction <player>");
                     }
 
                 } else {
-                    player.sendMessage("§cUtilisez: /sanction <player>");
+                    player.sendMessage("§cT'es staff ?? Non...");
                 }
 
             } else {
-                player.sendMessage("§cT'es staff ?? Non...");
+                sender.sendMessage("§cImpossible chakal!");
             }
-
-        } else {
-            sender.sendMessage("§cImpossible chakal!");
         }
-
         return false;
     }
 }
