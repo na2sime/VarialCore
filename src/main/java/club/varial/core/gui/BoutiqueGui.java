@@ -10,7 +10,7 @@ public class BoutiqueGui {
 
     public BoutiqueGui(Player player) {
 
-        Inventory inventory = Bukkit.createInventory(null, 45, "§bBoutique");
+        Inventory inventory = Bukkit.createInventory(null, 45, "§bBoutique:");
 
         inventory.setItem(4,
                 new VarialItems(Material.SKULL_ITEM, 1, (short) 3, "§b" + player.getName(), "§f  ", "§7» §9Grade : §f", "§c     ")

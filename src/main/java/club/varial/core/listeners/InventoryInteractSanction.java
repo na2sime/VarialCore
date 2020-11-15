@@ -1,7 +1,9 @@
 package club.varial.core.listeners;
 
 import club.varial.core.Main;
-import club.varial.core.enums.PrefixList;
+import club.varial.core.enums.SanctionsList;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,13 +11,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class InventoryInteractPrefix implements Listener {
+public class InventoryInteractSanction implements Listener {
 
     @EventHandler
     public void onInventoryInteract(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getView().getTitle() == "§bPréfixes diponibles:") {
+        if (event.getView().getTitle().contains("§cSanction pour")) {
 
             ItemStack item = event.getCurrentItem();
             event.setCancelled(true);
@@ -25,17 +27,15 @@ public class InventoryInteractPrefix implements Listener {
 
                 net.minecraft.server.v1_8_R3.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
 
-                if (itemStack.getTag().hasKey("prefix")) {
+                player.sendMessage("a");
 
-                    PrefixList prefix = PrefixList.getPrefixByName(itemStack.getTag().getString("prefix"));
-
-                    if (player.hasPermission(prefix.getPermission())) {
-                        player.sendMessage("§aVous avez mainetant le préfix: " + prefix.getName());
-                        Main.INSTANCE.prefixManager.addPrefix(player, prefix);
-                    } else {
-                        player.sendMessage("§cVous n'avez pas la permissions !");
-                    }
+                if (itemStack.getTag().hasKey("reason")) {
+                    player.sendMessage("b");
+                    SanctionsList sanction = SanctionsList.getSanctionByReason(itemStack.getTag().getString("reason"));
+                    OfflinePlayer sanctionned = Bukkit.getPlayer(itemStack.getTag().getString("sanctionned"));
+                    Main.INSTANCE.sanctionManager.sanction(player, sanctionned, sanction);
                 } else {
+                    player.sendMessage("c");
                     return;
                 }
             }

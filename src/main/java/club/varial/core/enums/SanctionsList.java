@@ -1,5 +1,8 @@
 package club.varial.core.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum SanctionsList {
 
     SPAM("Spam", SanctionsType.MUTE_B),
@@ -27,14 +30,22 @@ public enum SanctionsList {
     SCHEMATICA("Mod -> Schematica", SanctionsType.BAN_A),
     SPAM_MONEY("Spam Money", SanctionsType.BAN_A),
     REFUS_VERIF("Refus de vérif", SanctionsType.BAN_B),
-    CHEAT_AVOUER("Cheat avoué", SanctionsType.BAN_B);
+    CHEAT_AVOUE("Cheat avoué", SanctionsType.BAN_B);
 
     private String reason;
     private SanctionsType sanctionsType;
 
+    public static Map<String, SanctionsList> sanctionsListMap = new HashMap<>();
+
     SanctionsList(String reason, SanctionsType sanctionsType) {
         this.reason = reason;
         this.sanctionsType = sanctionsType;
+    }
+
+    static {
+        for (SanctionsList sanctions : SanctionsList.values()) {
+            sanctionsListMap.put(sanctions.getReason(), sanctions);
+        }
     }
 
     public String getReason() {
@@ -44,4 +55,9 @@ public enum SanctionsList {
     public SanctionsType getSanctionsType() {
         return this.sanctionsType;
     }
+
+    public static SanctionsList getSanctionByReason(String reason) {
+        return sanctionsListMap.get(reason);
+    }
+
 }

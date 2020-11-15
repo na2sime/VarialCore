@@ -19,7 +19,7 @@ public class PrefixGui {
 
     public PrefixGui(Player player) {
 
-        Inventory inventory = Bukkit.createInventory(null, 54, "§bPréfix diponible:");
+        Inventory inventory = Bukkit.createInventory(null, 54, "§bPréfixes diponibles:");
         PrefixManager prefixManager = Main.INSTANCE.prefixManager;
 
         for (int i = 0; i < PrefixList.values().length; i++) {
