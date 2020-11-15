@@ -1,6 +1,14 @@
-club/varial/core/manager/PrefixList.class
+club/varial/core/manager/SanctionManager.class
+club/varial/core/gui/BoutiqueGui.class
+club/varial/core/utils/VarialItems.class
+club/varial/core/listeners/InventoryInteractPrefix.class
+club/varial/core/enums/PrefixList.class
+club/varial/core/commands/BoutiqueCommand.class
+club/varial/core/enums/SanctionsList.class
 club/varial/core/manager/PrefixManager.class
+club/varial/core/gui/SanctionGui.class
 club/varial/core/gui/PrefixGui.class
-club/varial/core/listeners/InventoryInteract.class
+club/varial/core/listeners/InventoryInteractBoutique.class
 club/varial/core/commands/PrefixCommand.class
 club/varial/core/Main.class
+club/varial/core/enums/SanctionsType.class

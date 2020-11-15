@@ -1,4 +1,4 @@
-package club.varial.core.manager;
+package club.varial.core.enums;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,9 +22,9 @@ public enum PrefixList {
     WHATTHE("What the ****","§7[§cwHaT§ftHe§7] ", "varial.prefix.whatthe"),
     PRIDE("LGBTQIA+","§7[§cP§6R§eI§aD§bE§7] ", "varial.prefix.pride");
 
-    private String name;
-    private String display;
-    private String permission;
+    private final String name;
+    private final String display;
+    private final String permission;
 
     public static Map<String, PrefixList> prefixes = new HashMap<>();
 

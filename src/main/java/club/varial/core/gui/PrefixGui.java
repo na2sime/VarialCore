@@ -1,7 +1,7 @@
 package club.varial.core.gui;
 
 import club.varial.core.Main;
-import club.varial.core.manager.PrefixList;
+import club.varial.core.enums.PrefixList;
 import club.varial.core.manager.PrefixManager;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Bukkit;

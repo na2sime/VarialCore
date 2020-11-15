@@ -1,5 +1,6 @@
 package club.varial.core.manager;
 
+import club.varial.core.enums.PrefixList;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
